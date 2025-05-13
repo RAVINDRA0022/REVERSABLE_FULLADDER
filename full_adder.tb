@@ -1,0 +1,30 @@
+`timescale 1ns / 1ps
+
+module reversible_full_adder_tb;
+
+    reg a, b, cin;
+    wire sum, carry;
+
+    reversible_full_adder uut (
+        .a(a),
+        .b(b),
+        .cin(cin),
+        .sum(sum),
+        .carry(carry)
+    );
+
+    initial begin
+       
+    a = 0; b = 0; cin = 0; #1;
+    a = 0; b = 0; cin = 1; #1;
+    a = 0; b = 1; cin = 0; #1;
+    a = 0; b = 1; cin = 1; #1;
+    a = 1; b = 0; cin = 0; #1;
+    a = 1; b = 0; cin = 1; #1;
+    a = 1; b = 1; cin = 0; #1;
+    a = 1; b = 1; cin = 1;
+  
+        $finish;
+    end
+
+endmodule
